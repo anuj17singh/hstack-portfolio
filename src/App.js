@@ -12,13 +12,23 @@ class App extends Component {
   state={
     isLoggedIn: false
   }
+
+  handleLogin = () =>{
+    this.setState({
+      isLoggedIn: !this.state.isLoggedIn
+    })
+  }
+
   render() {
     return(
       <Router>
         <div className="App">
-          <Header/>
+          <Header isLoggedIn={this.state.isLoggedIn} handleLogin={this.handleLogin}/>
           <Switch>
-            <Route path='/' exact component={Login}/>
+            <Route path='/' exact component={(props) => (
+                <Login {...props} handleLogin={this.handleLogin} />
+              )}
+            />
             <Route path='/dashboard' component={Dashboard}/>
           </Switch>
           {/* <Dashboard/> */}

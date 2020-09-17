@@ -28,9 +28,9 @@ const useStyles = makeStyles((theme) => ({
     }
   }));
 
-export default function Header() {
+export default function Header(props) {
     const classes = useStyles();
-  
+    const {isLoggedIn,handleLogin} = props;
     return (
       
       <Grid container>
@@ -42,6 +42,7 @@ export default function Header() {
             <Typography variant="h6" align="left" className={classes.title}>
               PORTFOLIO REPORTING
             </Typography>
+            {isLoggedIn?
             <Link to='//hstackpf.herokuapp.com/portfolio.pdf' target="_blank" className={classes.link}>
               <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
                   <DescriptionRoundedIcon/>
@@ -49,15 +50,16 @@ export default function Header() {
                       Portfolio Report
                   </Typography>
               </IconButton>
-            </Link>
+            </Link>:''}
+            {isLoggedIn?
             <Link to='/' className={classes.link}>
-              <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+              <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu" onClick={handleLogin}>
                   <ExitToAppIcon/>
                   <Typography variant="caption" align="left" className={classes.title}>
                       Logout
                   </Typography>
               </IconButton>
-            </Link>
+            </Link>:''}
           </Toolbar>
         </AppBar>
         </div>

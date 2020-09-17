@@ -19,7 +19,7 @@ import SecurityDetails from '../SecurityDetails';
 
 
 const styles = theme => ({
-    lineGraph:{
+    root:{
         padding:'10px'
     }
   });
@@ -351,7 +351,7 @@ class Dashboard extends Component {
         };
         const {classes} = this.props;
         return(
-        <div >
+        <div className={classes.root}>
             {this.state.isLoading?
             <PulseLoader loading color={colors.BLUE_COLOR} style={{position: 'fixed',
                 left: '0px',
@@ -359,7 +359,7 @@ class Dashboard extends Component {
                 width: '100%',
                 height: '100%',
                 zIndex: '9999'}}/>:
-            <Grid container spacing={2} style={{margin:"5px"}}>
+            <Grid container spacing={2} >
                 <Grid item xs={12} sm={4}>
                     <DataCard displayData={this.state.networthData}/>
                 </Grid>
